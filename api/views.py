@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from api.models import Grade
-from api.serializers import GradeSerializer
+from api.models import Grade, Candidate
+from api.serializers import GradeSerializer, CandidateSerializer
 
 
 class GradingView(generics.CreateAPIView):
@@ -10,5 +10,5 @@ class GradingView(generics.CreateAPIView):
 
 
 class CandidatesView(generics.ListAPIView):
-    # to do
-    pass
+    queryset = Candidate.objects.all()
+    serializer_class = CandidateSerializer

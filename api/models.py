@@ -7,7 +7,7 @@ class Candidate(models.Model):
     last_name = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.first_name + self.last_name
+        return f"{self.first_name} {self.last_name}"
 
 
 class Recruiter(models.Model):
@@ -15,7 +15,7 @@ class Recruiter(models.Model):
     last_name = models.CharField(max_length=32)
 
     def __str__(self):
-        return self.first_name + self.last_name
+        return f"{self.first_name} {self.last_name}"
 
 
 class Task(models.Model):
@@ -28,5 +28,5 @@ class Task(models.Model):
 class Grade(models.Model):
     value = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name="grades")
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
