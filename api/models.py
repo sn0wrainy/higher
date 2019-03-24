@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Candidate(models.Model):
@@ -25,7 +26,7 @@ class Task(models.Model):
 
 
 class Grade(models.Model):
-    value = models.IntegerField()
+    value = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)

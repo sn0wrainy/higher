@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from api.views import GradingView, CandidatesView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/add-mark/', GradingView.as_view()),
+    path('api/candidates/', CandidatesView.as_view())
 ]
